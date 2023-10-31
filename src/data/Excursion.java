@@ -1,14 +1,10 @@
 package data;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import util.Database;
-
 public class Excursion {
 	private Integer _iId = null;
 	private void setId(Integer iId) { _iId = iId; }

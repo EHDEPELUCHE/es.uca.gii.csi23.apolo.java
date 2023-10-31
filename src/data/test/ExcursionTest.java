@@ -11,9 +11,6 @@ import org.junit.jupiter.api.Test;
 import data.Excursion;
 
 class ExcursionTest {
-
-	
-
 	@Test
 	void testConstructor() {
 		Excursion excursion = new Excursion("Paseo por el mercado");
@@ -36,5 +33,4 @@ class ExcursionTest {
 		assertEquals("Excursión a la Escuela de Esgrima", Excursion.Get(1).getName());
 		assertEquals(null, Excursion.Get(4));
 	}
-
 }
