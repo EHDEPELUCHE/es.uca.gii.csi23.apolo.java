@@ -31,13 +31,12 @@ public class Database {
 	}
 	
 	public static String String2Sql(String s, boolean bAddQuotes, boolean bAddWildcards) {
-		String sResult = s;
-		sResult = sResult.replace("'", "''");
+		s = s.replace("'", "''");
 		if (bAddWildcards)
-			sResult = "%" + sResult + "%";
+			s = "%" + s + "%";
 		if (bAddQuotes)
-			sResult = "'" + sResult + "'";
-		return sResult;
+			s = "'" + s + "'";
+		return s;
 	}
 	
 	public static int Boolean2Sql (boolean b) {
