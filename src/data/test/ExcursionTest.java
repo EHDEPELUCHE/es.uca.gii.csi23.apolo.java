@@ -15,16 +15,14 @@ class ExcursionTest {
 	void testConstructor() {
 		Excursion excursion = new Excursion("Paseo por el mercado");
 		assertNull(excursion.getId());
-		assertEquals(excursion.getName(), "Paseo por el mercado");
+		assertEquals("Paseo por el mercado", excursion.getName());
 	}
 	
 	@Test
 	void testSets() {
 		Excursion excursion = new Excursion("Paseo por el mercado");
-		//excursion.setId(3);
 		excursion.setName("Paseo por el pueblo");
-		//assertEquals(excursion.getId(), 3);
-		assertEquals(excursion.getName(), "Paseo por el pueblo");
+		assertEquals("Paseo por el pueblo", excursion.getName());
 	}
 	
 	@Test
