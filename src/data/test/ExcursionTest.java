@@ -27,14 +27,9 @@ class ExcursionTest {
 	
 	@Test
 	void testGet() throws IOException, SQLException {
-		assertEquals(1, Excursion.Get(1).getId());
-		assertEquals("Excursión a la Escuela de Esgrima", Excursion.Get(1).getName());
+		Excursion excursion = Excursion.Get(1);
+		assertEquals(1, excursion.getId());
+		assertEquals("Excursión a la Escuela de Esgrima", excursion.getName());
 		assertEquals(null, Excursion.Get(4));
-	}
-	
-	@Test /* Test extra no incluido en P2 S1, pero nos parece interesante */
-	void testtoString() throws SQLException, IOException {
-		assertEquals(	"data.Excursion@48cd319d:1:Excursión a la Escuela de Esgrima", 
-						Excursion.Get(1).toString());
 	}
 }

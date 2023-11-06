@@ -27,7 +27,7 @@ class DatabaseTest {
 			while (rs.next()) {
 				System.out.println(rs.getString("id") + " " + rs.getString("nombre"));
 				if(i == 0) assertEquals("Excursión a la Escuela de Esgrima", rs.getString("nombre"));
-				else if(i == 2) assertEquals("Excursión a la Tienda de Bombas", rs.getString("nombre"));
+				if(i == 2) assertEquals("Excursión a la Tienda de Bombas", rs.getString("nombre"));
 				i++;
 			}
 			assertEquals(3, i);
