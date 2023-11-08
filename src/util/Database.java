@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import data.Excursion;
-
 public class Database {
 
 	public static String getPropertiesUrl() { return "./db.properties"; }
