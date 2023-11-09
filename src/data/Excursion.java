@@ -46,7 +46,7 @@ public class Excursion {
 			if(rs.next()) return new Excursion(iId, rs.getString("nombre"));
 			return null;
 		}
-		catch (SQLException e) {throw e;}
+		catch (SQLException e) { throw e; }
 		finally {
 			if (rs != null) rs.close();
 			if (con != null) con.close();
@@ -65,7 +65,7 @@ public class Excursion {
 				con.createStatement().executeUpdate("UPDATE `excursion` SET `nombre`=" 
 						+ Database.String2Sql(_sName, true, false) + " WHERE `id` = " + _iId);
 		}
-		catch (SQLException e) {throw e;}
+		catch (SQLException e) { throw e; }
 		finally { if (con != null) con.close(); }	
 	}
 
@@ -78,7 +78,7 @@ public class Excursion {
 			con.createStatement().executeUpdate("DELETE FROM `excursion` WHERE id = " + _iId);
 			_dtDeletedAt = new Date();
 		}
-		catch (SQLException e) {throw e;}
+		catch (SQLException e) { throw e; }
 		finally { if (con != null) con.close(); }	
 	}
 	
@@ -93,7 +93,7 @@ public class Excursion {
 			while (rs.next()) aExcursion.add(new Excursion(rs.getInt("id"), rs.getString("nombre")));
 			return aExcursion;
 		}
-		catch (SQLException e) {throw e;}
+		catch (SQLException e) { throw e; }
 		finally {
 			if (rs != null) rs.close();
 			if (con != null) con.close();

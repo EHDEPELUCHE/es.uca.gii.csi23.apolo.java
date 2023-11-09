@@ -47,7 +47,7 @@ public class Database {
 			rs.next();
 			return rs.getInt("LastId");
 		}
-		catch (SQLException e) {throw e;}
+		catch (SQLException e) { throw e; }
 		finally { if (rs != null) rs.close(); }
 	}
 }
