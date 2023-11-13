@@ -30,6 +30,7 @@ class ExcursionTest {
 		Excursion excursion = Excursion.Get(1);
 		assertEquals(1, excursion.getId());
 		assertEquals("Excursión a la Escuela de Esgrima", excursion.getName());
+		
 		assertEquals(null, Excursion.Get(4));
 	}
 	
@@ -42,7 +43,7 @@ class ExcursionTest {
 		assertEquals("O'Connell", Excursion.Get(iId).getName());
 		excursion.setName("Eugenio");
 		excursion.Save();
-		assertEquals("Eugenio", Excursion.Get(iId).getName());
+		assertEquals("Eugenio", excursion.getName());
 		excursion.Delete();
 		assertNotNull(excursion.getDeletedAt());
 		assertNull(Excursion.Get(iId));

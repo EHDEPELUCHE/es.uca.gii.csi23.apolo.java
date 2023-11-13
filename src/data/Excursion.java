@@ -58,12 +58,12 @@ public class Excursion {
 		try {
 			con = Database.Connection();
 			if (_iId == null) {
-				con.createStatement().executeUpdate("INSERT INTO `excursion` (`nombre`) VALUES ("
+				con.createStatement().executeUpdate("INSERT INTO excursion (nombre) VALUES ("
 						+ Database.String2Sql(_sName, true, false) + ")");
 				_iId = Database.LastId(con);
 			} else
-				con.createStatement().executeUpdate("UPDATE `excursion` SET `nombre`=" 
-						+ Database.String2Sql(_sName, true, false) + " WHERE `id` = " + _iId);
+				con.createStatement().executeUpdate("UPDATE excursion SET nombre=" 
+						+ Database.String2Sql(_sName, true, false) + " WHERE id = " + _iId);
 		}
 		catch (SQLException e) { throw e; }
 		finally { if (con != null) con.close(); }	
@@ -71,11 +71,11 @@ public class Excursion {
 
 	public void Delete() throws IOException, SQLException {
 		if (_iId == null || _dtDeletedAt != null)
-			throw new IllegalStateException();
+			throw new IllegalStateException("La excursión que pretende borrar no existe.");
 		Connection con = null;
 		try {
 			con = Database.Connection();
-			con.createStatement().executeUpdate("DELETE FROM `excursion` WHERE id = " + _iId);
+			con.createStatement().executeUpdate("DELETE FROM excursion WHERE id = " + _iId);
 			_dtDeletedAt = new Date();
 		}
 		catch (SQLException e) { throw e; }
@@ -89,6 +89,7 @@ public class Excursion {
 			con = Database.Connection();
 			rs = con.createStatement().executeQuery("SELECT id, nombre FROM Excursion " + Where(sName) 
 					+ "ORDER BY nombre ASC"); 
+			
 			List<Excursion> aExcursion = new ArrayList<Excursion>();
 			while (rs.next()) aExcursion.add(new Excursion(rs.getInt("id"), rs.getString("nombre")));
 			return aExcursion;

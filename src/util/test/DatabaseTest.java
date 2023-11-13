@@ -25,7 +25,7 @@ class DatabaseTest {
 			rs = con.createStatement().executeQuery("SELECT id, nombre FROM Excursion ORDER BY nombre ASC");
 			int i = 0;
 			while (rs.next()) {
-				System.out.println(rs.getString("id") + " " + rs.getString("nombre"));
+				System.out.println(rs.getInt("id") + " " + rs.getString("nombre"));
 				if(i == 0) assertEquals("Excursión a la Escuela de Esgrima", rs.getString("nombre"));
 				if(i == 2) assertEquals("Excursión a la Tienda de Bombas", rs.getString("nombre"));
 				i++;

@@ -19,6 +19,7 @@ public class Database {
 				properties.getProperty("jdbc.username"),
 				properties.getProperty("jdbc.password"));
 	}
+	
 	public static void LoadDriver() throws InstantiationException, IllegalAccessException, 
 										   ClassNotFoundException, IOException, 
 										   IllegalArgumentException, InvocationTargetException, 
