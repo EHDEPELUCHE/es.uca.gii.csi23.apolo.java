@@ -88,7 +88,7 @@ public class Excursion {
 		try {
 			con = Database.Connection();
 			rs = con.createStatement().executeQuery("SELECT id, nombre FROM Excursion " + Where(sName) 
-					+ "ORDER BY nombre ASC"); 
+					+ " ORDER BY nombre ASC"); 
 			
 			List<Excursion> aExcursion = new ArrayList<Excursion>();
 			while (rs.next()) aExcursion.add(new Excursion(rs.getInt("id"), rs.getString("nombre")));
