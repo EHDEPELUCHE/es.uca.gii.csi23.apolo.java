@@ -71,7 +71,7 @@ public class Excursion {
 
 	public void Delete() throws IOException, SQLException {
 		if (_iId == null || _dtDeletedAt != null)
-			throw new IllegalStateException("La excursión que pretende borrar no existe.");
+			throw new IllegalStateException("La excursión que intenta borrar no existe.");
 		
 		Connection con = null;
 		try {
