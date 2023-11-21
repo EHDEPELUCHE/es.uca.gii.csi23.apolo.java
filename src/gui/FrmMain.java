@@ -70,6 +70,9 @@ public class FrmMain {
 		menuBar.add(mnuBuscar);
 		
 		JMenuItem mitBuscarExcursion = new JMenuItem("Excursión");
+		mitBuscarExcursion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { ShowInternalFrame(new IfrExcursiones(getThis()), 25, 43, 400, 250); }
+		});
 		mnuBuscar.add(mitBuscarExcursion);
 		_frame.getContentPane().setLayout(null);
 	}
@@ -81,4 +84,5 @@ public class FrmMain {
 		ifr.setVisible(true);
 	}
 
+	public FrmMain getThis() { return this; }
 }

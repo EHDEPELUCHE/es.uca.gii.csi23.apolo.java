@@ -59,11 +59,17 @@ public class IfrExcursion extends JInternalFrame {
 				catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				
 			}
 		});
 		butGuardar.setBounds(39, 77, 85, 21);
 		getContentPane().add(butGuardar);
-
+	}
+	
+	public IfrExcursion(Excursion excursion) {
+		this();
+		if (excursion == null)
+			throw new IllegalArgumentException("El parámetro 'excursion' no puede ser null.");
+		txtNombre.setText(excursion.getName());
+		_excursion = excursion;
 	}
 }
