@@ -24,9 +24,17 @@ public class Excursion {
 	private Date _dtDeletedAt = null;
 	public Date getDeletedAt() { return _dtDeletedAt; }
 
-	public Excursion(String sName) { this(null, sName); }
+	private Lugar _lugar;
+	public Lugar getLugar() { return _lugar; }
+	public void setLugar(String sName) {
+		if (sName == null || sName == "") 
+			throw new IllegalArgumentException ("El lugar no puede ser vacío o null.");
+		_lugar = new Lugar(sName); 
+	}
 	
-	private Excursion(Integer iId, String sName) { setName(sName); _iId = iId; }
+	public Excursion(String sName, Lugar lugar) { this(null, sName, lugar); }
+	
+	private Excursion(Integer iId, String sName, Lugar lugar) { setName(sName); _iId = iId; setLugar(lugar.getName()); }
 	
 	public String toString() { return super.toString() + ":" + this.getId() + ":" + this.getName(); }
 	
@@ -42,8 +50,8 @@ public class Excursion {
 		ResultSet rs = null;
 		try {
 			con = Database.Connection();
-			rs = con.createStatement().executeQuery("SELECT nombre FROM Excursion WHERE id = " + iId);
-			if(rs.next()) return new Excursion(iId, rs.getString("nombre"));
+			rs = con.createStatement().executeQuery("SELECT nombre, lugar_id FROM Excursion WHERE id = " + iId);
+			if(rs.next()) return new Excursion(iId, rs.getString("nombre"), Lugar.Get(rs.getInt("lugar_id")));
 			return null;
 		}
 		catch (SQLException e) { throw e; }
@@ -58,12 +66,12 @@ public class Excursion {
 		try {
 			con = Database.Connection();
 			if (_iId == null) {
-				con.createStatement().executeUpdate("INSERT INTO excursion (nombre) VALUES ("
-						+ Database.String2Sql(_sName, true, false) + ")");
+				con.createStatement().executeUpdate("INSERT INTO excursion (lugar_id, nombre) VALUES ("
+						+ _lugar.getId() + ", " + Database.String2Sql(_sName, true, false) + ")");
 				_iId = Database.LastId(con);
 			} else
-				con.createStatement().executeUpdate("UPDATE excursion SET nombre=" 
-						+ Database.String2Sql(_sName, true, false) + " WHERE id = " + _iId);
+				con.createStatement().executeUpdate("UPDATE excursion SET lugar_id=" + _lugar.getId() 
+				+ ", nombre=" + Database.String2Sql(_sName, true, false) + " WHERE id = " + _iId);
 		}
 		catch (SQLException e) { throw e; }
 		finally { if (con != null) con.close(); }	
@@ -83,16 +91,18 @@ public class Excursion {
 		finally { if (con != null) con.close(); }	
 	}
 	
-	public static List<Excursion> Search(String sName) throws IOException, SQLException {
+	public static List<Excursion> Search(String sName, String sLugar) throws IOException, SQLException {
 		Connection con = null;
 		ResultSet rs = null;
 		try {
 			con = Database.Connection();
-			rs = con.createStatement().executeQuery("SELECT id, nombre FROM Excursion " + Where(sName) 
-					+ " ORDER BY nombre ASC"); 
+			rs = con.createStatement().executeQuery("SELECT excursion.id, excursion.lugar_id, "
+					+ "excursion.nombre FROM excursion "
+					+ "INNER JOIN lugar ON lugar.id = excursion.lugar_id " + Where(sName, sLugar) 
+					+ " ORDER BY excursion.nombre, lugar.nombre ASC"); 
 			
 			List<Excursion> aExcursion = new ArrayList<Excursion>();
-			while (rs.next()) aExcursion.add(new Excursion(rs.getInt("id"), rs.getString("nombre")));
+			while (rs.next()) aExcursion.add(new Excursion(rs.getInt("id"), rs.getString("nombre"), Lugar.Get(rs.getInt("lugar_id"))));
 			return aExcursion;
 		}
 		catch (SQLException e) { throw e; }
@@ -102,9 +112,14 @@ public class Excursion {
 		}
 	}
 	
-	private static String Where(String sName) {
-		if (sName != null)
-			return "WHERE nombre LIKE " + Database.String2Sql(sName, true, true);
+	private static String Where(String sName, String sLugar) {
+		if (sName != null && sLugar != null)
+			return "WHERE excursion.nombre LIKE " + Database.String2Sql(sName, true, true) 
+			+ " OR lugar.nombre LIKE " + Database.String2Sql(sLugar, true, true);
+		else if(sName != null && sLugar == null)
+			return "WHERE excursion.nombre LIKE " + Database.String2Sql(sName, true, true);
+		else if(sName == null && sLugar != null)
+			return "WHERE lugar.nombre LIKE " + Database.String2Sql(sLugar, true, true) ;
 		return "";
 	}
 }

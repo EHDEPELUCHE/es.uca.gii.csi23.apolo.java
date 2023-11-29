@@ -24,7 +24,7 @@ public class ExcursionesTableModel extends AbstractTableModel {
 	public Object getValueAt(int iRow, int iColumn) {
 		switch(iColumn) {
 			case 0: return _aData.get(iRow).getName();
-			default: throw new IllegalArgumentException("El número de columnas no es el esperado para la fila " + iRow + "."); 
+			default: throw new IllegalArgumentException("La columna " + iColumn + " no es válida."); 
 		}
 	}
 	
