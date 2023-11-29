@@ -25,7 +25,7 @@ class ExcursionTest {
 	void testSets() throws IOException, SQLException {
 		Excursion excursion = new Excursion("Paseo por el mercado", Lugar.Get(1));
 		excursion.setName("Paseo por el pueblo");
-		excursion.setLugar("Sur");
+		excursion.setLugar(Lugar.Get(2));
 		assertEquals("Paseo por el pueblo", excursion.getName());
 		assertEquals("Sur", excursion.getLugar().getName());
 	}
@@ -49,7 +49,7 @@ class ExcursionTest {
 		assertEquals("O'Connell", Excursion.Get(iId).getName());
 		assertEquals("Norte", Excursion.Get(iId).getLugar().getName());
 		excursion.setName("Eugenio");
-		excursion.setLugar("Sur");
+		excursion.setLugar(Lugar.Get(2));
 		excursion.Save();
 		assertEquals("Eugenio", excursion.getName());
 		assertEquals("Sur", Excursion.Get(iId).getLugar().getName());

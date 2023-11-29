@@ -53,19 +53,21 @@ class LugarTest {
 	@Test
 	void testSearch() throws IOException, SQLException {
 		List<Lugar> aLugar = Lugar.Search(null);
-		assertEquals(3, aLugar.size());
-		assertEquals("Lavadero", aLugar.get(0).getName());
-		assertEquals("Norte", aLugar.get(1).getName());
-		assertEquals("Sur", aLugar.get(2).getName());
+		assertEquals(5, aLugar.size()); 
+		assertEquals("Este", aLugar.get(0).getName());
+		assertEquals("Lavadero", aLugar.get(1).getName());
+		assertEquals("Norte", aLugar.get(2).getName());
+		assertEquals("Oeste", aLugar.get(3).getName());
+		assertEquals("Sur", aLugar.get(4).getName());
 		
 		aLugar = Lugar.Search("Norte");
 		assertEquals(1, aLugar.size());
 		assertEquals("Norte", aLugar.get(0).getName());
 		
-		aLugar = Lugar.Search("e");
+		aLugar = Lugar.Search("ste");
 		assertEquals(2, aLugar.size());
-		assertEquals("Lavadero", aLugar.get(0).getName());
-		assertEquals("Norte", aLugar.get(1).getName());
+		assertEquals("Este", aLugar.get(0).getName());
+		assertEquals("Oeste", aLugar.get(1).getName());
 		
 		aLugar = Lugar.Search("ATRUSCUS");
 		assertEquals(0, aLugar.size());

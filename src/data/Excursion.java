@@ -26,15 +26,15 @@ public class Excursion {
 
 	private Lugar _lugar;
 	public Lugar getLugar() { return _lugar; }
-	public void setLugar(String sName) {
-		if (sName == null || sName == "") 
+	public void setLugar(Lugar lugar) {
+		if (lugar == null || lugar.getName() == "") 
 			throw new IllegalArgumentException ("El lugar no puede ser vacío o null.");
-		_lugar = new Lugar(sName); 
+		_lugar = lugar; 
 	}
 	
 	public Excursion(String sName, Lugar lugar) { this(null, sName, lugar); }
 	
-	private Excursion(Integer iId, String sName, Lugar lugar) { setName(sName); _iId = iId; setLugar(lugar.getName()); }
+	private Excursion(Integer iId, String sName, Lugar lugar) { setName(sName); _iId = iId; setLugar(lugar); }
 	
 	public String toString() { return super.toString() + ":" + this.getId() + ":" + this.getName(); }
 	
