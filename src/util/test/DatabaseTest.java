@@ -22,7 +22,7 @@ class DatabaseTest {
 		ResultSet rs = null;
 		try {
 			con = Database.Connection();
-			rs = con.createStatement().executeQuery("SELECT id, nombre FROM Excursion ORDER BY nombre ASC");
+			rs = con.createStatement().executeQuery("SELECT id, lugar_id, nombre FROM Excursion ORDER BY nombre ASC");
 			int i = 0;
 			while (rs.next()) {
 				System.out.println(rs.getInt("id") + " " + rs.getString("nombre"));
@@ -30,8 +30,8 @@ class DatabaseTest {
 				if(i == 2) assertEquals("Excursión a la Tienda de Bombas", rs.getString("nombre"));
 				i++;
 			}
-			assertEquals(3, i);
-			assertEquals(2, rs.getMetaData().getColumnCount());
+			assertEquals(4, i);
+			assertEquals(3, rs.getMetaData().getColumnCount());
 		}
 		catch (SQLException e) { throw e; }
 		finally {

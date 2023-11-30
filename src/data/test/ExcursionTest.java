@@ -99,7 +99,22 @@ class ExcursionTest {
 		assertEquals("Excursión a la Tienda de Bombas", aExcursion.get(1).getName());
 		assertEquals("Oeste", aExcursion.get(1).getLugar().getName());
 		
+		aExcursion = Excursion.Search(null, "rte");
+		assertEquals(1, aExcursion.size());
+		assertEquals("Excursión a la Fuente de la Gran Hada", aExcursion.get(0).getName());
+		assertEquals("Norte", aExcursion.get(0).getLugar().getName());
+		
 		aExcursion = Excursion.Search(null, "ATRUSCUS");
 		assertEquals(0, aExcursion.size());
+		
+		aExcursion = Excursion.Search("Excursión a la Escuela de Esgrima", "Oeste");
+		assertEquals(1, aExcursion.size());
+		assertEquals("Excursión a la Escuela de Esgrima", aExcursion.get(0).getName());
+		assertEquals("Oeste", aExcursion.get(0).getLugar().getName());
+		
+		aExcursion = Excursion.Search("esgrima", "Oes");
+		assertEquals(1, aExcursion.size());
+		assertEquals("Excursión a la Escuela de Esgrima", aExcursion.get(0).getName());
+		assertEquals("Oeste", aExcursion.get(0).getLugar().getName());
 	}
 }

@@ -27,8 +27,7 @@ public class Excursion {
 	private Lugar _lugar;
 	public Lugar getLugar() { return _lugar; }
 	public void setLugar(Lugar lugar) {
-		if (lugar == null || lugar.getName() == "") 
-			throw new IllegalArgumentException ("El lugar no puede ser vacío o null.");
+		if (lugar == null) throw new IllegalArgumentException ("El lugar no puede ser vacío o null.");
 		_lugar = lugar; 
 	}
 	
@@ -96,8 +95,7 @@ public class Excursion {
 		ResultSet rs = null;
 		try {
 			con = Database.Connection();
-			rs = con.createStatement().executeQuery("SELECT excursion.id, excursion.lugar_id, "
-					+ "excursion.nombre FROM excursion "
+			rs = con.createStatement().executeQuery("SELECT excursion.id, excursion.lugar_id, excursion.nombre FROM excursion "
 					+ "INNER JOIN lugar ON lugar.id = excursion.lugar_id " + Where(sName, sLugar) 
 					+ " ORDER BY excursion.nombre, lugar.nombre ASC"); 
 			
@@ -115,7 +113,7 @@ public class Excursion {
 	private static String Where(String sName, String sLugar) {
 		if (sName != null && sLugar != null)
 			return "WHERE excursion.nombre LIKE " + Database.String2Sql(sName, true, true) 
-			+ " OR lugar.nombre LIKE " + Database.String2Sql(sLugar, true, true);
+			+ " AND lugar.nombre LIKE " + Database.String2Sql(sLugar, true, true);
 		else if(sName != null && sLugar == null)
 			return "WHERE excursion.nombre LIKE " + Database.String2Sql(sName, true, true);
 		else if(sName == null && sLugar != null)
