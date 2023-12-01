@@ -111,11 +111,9 @@ public class Excursion {
 	}
 	
 	private static String Where(String sName, String sLugar) {
-		if (sName != null) return "WHERE excursion.nombre LIKE " + Database.String2Sql(sName, true, true) 
-    + (sLugar != null ? " AND lugar.nombre LIKE " + Database.String2Sql(sLugar, true, true) : "");
-  else if (sLugar != null) return "WHERE lugar.nombre LIKE " + Database.String2Sql(sLugar, true, true);
-  return "";
-
+		if (sName != null) sName = "WHERE excursion.nombre LIKE " + Database.String2Sql(sName, true, true); 
+		if (SLugar != null) sLugar = "WHERE lugar.nombre LIKE " + Database.String2Sql(sLugar, true, true);
+		return sName + " AND " + sLugar;
 
   // Lo de abajo funciona fijo
 
