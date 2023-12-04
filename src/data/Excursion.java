@@ -111,10 +111,18 @@ public class Excursion {
 	}
 	
 	private static String Where(String sName, String sLugar) {
+		String sReturn = " ";
+		if (sName != "" && sName != null) sReturn += "excursion.nombre LIKE " + Database.String2Sql(sName, true, true) + " AND ";
+		if (sLugar != "" && sName != null) sReturn += "lugar.nombre LIKE " + Database.String2Sql(sLugar, true, true) + " AND ";
+		if (sReturn != " ") sReturn = "WHERE" + sReturn.substring(0, sReturn.length() - 5);
+		return sReturn;
+		
+/*
 		if (sName != null) sName = "excursion.nombre LIKE " + Database.String2Sql(sName, true, true);
 		if (sLugar != null) sLugar = "lugar.nombre LIKE " + Database.String2Sql(sLugar, true, true);
 		return (sName != null && sLugar != null) ? 
 				"WHERE " + sName + " AND " + sLugar : (sName != null) ?
-						" WHERE " + sName : (sLugar != null) ? " WHERE " + sLugar : "";
+						" WHERE " + sName : (sLugar != null) ? " WHERE " + sLugar : ""; 
+*/
 	}
 }
