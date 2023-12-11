@@ -116,13 +116,5 @@ public class Excursion {
 		if (sLugar != null && sLugar != "") sReturn += "lugar.nombre LIKE " + Database.String2Sql(sLugar, true, true) + " AND ";
 		if (sReturn != " ") sReturn = "WHERE" + sReturn.substring(0, sReturn.length() - 5);
 		return sReturn;
-		
-/*
-		if (sName != null) sName = "excursion.nombre LIKE " + Database.String2Sql(sName, true, true);
-		if (sLugar != null) sLugar = "lugar.nombre LIKE " + Database.String2Sql(sLugar, true, true);
-		return (sName != null && sLugar != null) ? 
-				"WHERE " + sName + " AND " + sLugar : (sName != null) ?
-						" WHERE " + sName : (sLugar != null) ? " WHERE " + sLugar : ""; 
-*/
 	}
 }
