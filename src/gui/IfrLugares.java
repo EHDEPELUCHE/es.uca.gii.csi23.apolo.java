@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import data.Excursion;
 import data.Lugar;
 
 import javax.swing.JButton;
@@ -17,26 +16,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
-import java.sql.SQLException;
-import javax.swing.JComboBox;
 
-public class IfrExcursiones extends JInternalFrame {
+public class IfrLugares extends JInternalFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtNombre;
 	private JTable tabResultado;
-	JComboBox<Lugar> cmbLugar = new JComboBox<Lugar>();
 
 	/**
 	 * Create the frame.
-	 * @throws SQLException 
-	 * @throws IOException 
 	 */
-	public IfrExcursiones(FrmMain frmMain) throws IOException, SQLException {
+	public IfrLugares(FrmMain frmMain) {
 		setClosable(true);
 		setResizable(true);
-		setTitle("Excursiones");
+		setTitle("Lugares");
 		setBounds(100, 100, 450, 300);
 		
 		JPanel panel = new JPanel();
@@ -55,22 +48,13 @@ public class IfrExcursiones extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					tabResultado.setModel(
-						new ExcursionesTableModel(Excursion.Search(txtNombre.getText(), 
-								(cmbLugar.getSelectedItem() == null) ? null : 
-									cmbLugar.getSelectedItem().toString())));
+						new LugaresTableModel(Lugar.Search(txtNombre.getText())));
 				}
 				catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
-		
-		JLabel lblLugar = new JLabel("Lugar");
-		panel.add(lblLugar);
-		
-		cmbLugar.setModel(new LugarListModel(Lugar.Search(null)));
-		cmbLugar.setEditable(true);
-		panel.add(cmbLugar);
 		panel.add(butBuscar);
 		
 		tabResultado = new JTable();
@@ -79,15 +63,13 @@ public class IfrExcursiones extends JInternalFrame {
 			public void mouseClicked(MouseEvent e) {
 				// Se activa con el doble clic sobre una fila.
 				if (e.getClickCount() == 2) {
+					
 					int iRow = ((JTable)e.getSource()).getSelectedRow();
-					Excursion excursion = ((ExcursionesTableModel)tabResultado.getModel()).getData(iRow);
-					if (excursion != null)
-						try {
-							frmMain.ShowInternalFrame(new IfrExcursion(excursion), 400, 27, 500, 192);
-						} catch (IOException | SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+					Lugar lugar = ((LugaresTableModel)tabResultado.getModel()).getData(iRow);
+					
+					if (lugar != null)
+						frmMain.ShowInternalFrame(new IfrLugar(lugar), 400, 27, 400, 192);
+					
 				}
 			}
 		});

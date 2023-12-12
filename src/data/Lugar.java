@@ -28,7 +28,7 @@ public class Lugar {
 	
 	private Lugar(Integer iId, String sName) { setName(sName); _iId = iId; }
 	
-	public String toString() { return super.toString() + ":" + this.getId() + ":" + this.getName(); }
+	public String toString() { return this.getName(); }
 	
 	/**
 	 * @param	iId Es la clave primaria tipo int de una instancia de la clase Lugar

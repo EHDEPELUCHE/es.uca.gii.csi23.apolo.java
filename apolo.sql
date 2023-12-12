@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-11-2023 a las 15:32:01
+-- Tiempo de generación: 12-12-2023 a las 19:29:35
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -43,7 +43,8 @@ INSERT INTO `excursion` (`id`, `lugar_id`, `nombre`) VALUES
 (1, 10, 'Excursión a la Escuela de Esgrima'),
 (2, 10, 'Excursión a la Tienda de Bombas'),
 (3, 1, 'Excursión a la Fuente de la Gran Hada'),
-(16, 9, 'Excursión al Bar Lácteo');
+(16, 9, 'Excursión al Bar Lácteo'),
+(44, 3, 'Excursión al Bar Pepi');
 
 --
 -- Disparadores `excursion`
@@ -87,7 +88,8 @@ INSERT INTO `lugar` (`id`, `nombre`) VALUES
 (2, 'Sur'),
 (3, 'Lavadero'),
 (9, 'Este'),
-(10, 'Oeste');
+(10, 'Oeste'),
+(24, 'Nadiria');
 
 --
 -- Disparadores `lugar`
@@ -137,13 +139,13 @@ ALTER TABLE `lugar`
 -- AUTO_INCREMENT de la tabla `excursion`
 --
 ALTER TABLE `excursion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `lugar`
 --
 ALTER TABLE `lugar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Restricciones para tablas volcadas

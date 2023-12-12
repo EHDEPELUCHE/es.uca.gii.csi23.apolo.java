@@ -10,6 +10,8 @@ import javax.swing.JMenuItem;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class FrmMain {
@@ -62,18 +64,41 @@ public class FrmMain {
 		
 		JMenuItem mitNuevaExcursion = new JMenuItem("Excursión");
 		mitNuevaExcursion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) { ShowInternalFrame(new IfrExcursion(), 10, 27, 400, 192); }
+			public void actionPerformed(ActionEvent e) { try {
+				ShowInternalFrame(new IfrExcursion(), 10, 27, 500, 192);
+			} catch (IOException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} }
 		});
 		mnuNuevo.add(mitNuevaExcursion);
+		
+		JMenuItem mitNuevoLugar = new JMenuItem("Lugar");
+		mitNuevoLugar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { ShowInternalFrame(new IfrLugar(), 27, 44, 400, 192); }
+		});
+		mnuNuevo.add(mitNuevoLugar);
 		
 		JMenu mnuBuscar = new JMenu("Buscar");
 		menuBar.add(mnuBuscar);
 		
 		JMenuItem mitBuscarExcursion = new JMenuItem("Excursión");
 		mitBuscarExcursion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) { ShowInternalFrame(new IfrExcursiones(getThis()), 25, 43, 400, 250); }
+			public void actionPerformed(ActionEvent e) { try {
+				ShowInternalFrame(new IfrExcursiones(getThis()), 25, 43, 400, 250);
+			} catch (IOException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} }
 		});
 		mnuBuscar.add(mitBuscarExcursion);
+		
+		JMenuItem mitBuscarLugar = new JMenuItem("Lugar");
+		mitBuscarLugar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) { ShowInternalFrame(new IfrLugares(getThis()), 43, 61, 400, 250); }
+		});
+		mnuBuscar.add(mitBuscarLugar);
+		
 		_frame.getContentPane().setLayout(null);
 	}
 	
