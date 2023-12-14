@@ -63,18 +63,15 @@ public class IfrLugares extends JInternalFrame {
 			public void mouseClicked(MouseEvent e) {
 				// Se activa con el doble clic sobre una fila.
 				if (e.getClickCount() == 2) {
-					
 					int iRow = ((JTable)e.getSource()).getSelectedRow();
 					Lugar lugar = ((LugaresTableModel)tabResultado.getModel()).getData(iRow);
 					
 					if (lugar != null)
 						frmMain.ShowInternalFrame(new IfrLugar(lugar), 400, 27, 400, 192);
-					
 				}
 			}
 		});
 		getContentPane().add(tabResultado, BorderLayout.CENTER);
-
 	}
 
 }

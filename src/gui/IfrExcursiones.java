@@ -92,7 +92,6 @@ public class IfrExcursiones extends JInternalFrame {
 			}
 		});
 		getContentPane().add(tabResultado, BorderLayout.CENTER);
-
 	}
 
 }
