@@ -66,10 +66,7 @@ public class FrmMain {
 		mitNuevaExcursion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { try {
 				ShowInternalFrame(new IfrExcursion(), 10, 27, 500, 192);
-			} catch (IOException | SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} }
+			} catch (IOException | SQLException e1) {} }
 		});
 		mnuNuevo.add(mitNuevaExcursion);
 		
@@ -86,10 +83,7 @@ public class FrmMain {
 		mitBuscarExcursion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { try {
 				ShowInternalFrame(new IfrExcursiones(getThis()), 25, 43, 400, 250);
-			} catch (IOException | SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} }
+			} catch (IOException | SQLException e1) {} }
 		});
 		mnuBuscar.add(mitBuscarExcursion);
 		

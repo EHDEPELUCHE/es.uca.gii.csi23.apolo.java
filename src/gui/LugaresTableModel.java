@@ -5,10 +5,6 @@ import javax.swing.table.AbstractTableModel;
 import data.Lugar;
 
 public class LugaresTableModel extends AbstractTableModel {
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private final List<Lugar> _aData;
 	

@@ -8,11 +8,7 @@ import data.Lugar;
 
 public class LugarListModel 
 	extends AbstractListModel<Lugar>
-	implements ComboBoxModel<Lugar> 
-{
-	/**
-	 * 
-	 */
+	implements ComboBoxModel<Lugar> {
 	private static final long serialVersionUID = 1L;
 	private final List<Lugar> _aData;
 	private Object _oSelectedItem = null;
@@ -23,10 +19,10 @@ public class LugarListModel
 	public int getSize() { return _aData.size(); }
 
 	@Override
-	public Lugar getElementAt(int index) { return _aData.get(index); }
+	public Lugar getElementAt(int iIndex) { return _aData.get(iIndex); }
 
 	@Override
-	public void setSelectedItem(Object anItem) { _oSelectedItem = anItem; }
+	public void setSelectedItem(Object oItem) { _oSelectedItem = oItem; }
 
 	@Override
 	public Object getSelectedItem() { return _oSelectedItem; }
