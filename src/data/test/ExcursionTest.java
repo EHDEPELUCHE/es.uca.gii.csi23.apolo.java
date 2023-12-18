@@ -62,7 +62,7 @@ class ExcursionTest {
 	@Test
 	void testSearch() throws IOException, SQLException {
 		List<Excursion> aExcursion = Excursion.Search(null, null);
-		assertEquals(4, aExcursion.size());
+		assertEquals(5, aExcursion.size());
 		assertEquals("Excursión a la Escuela de Esgrima", aExcursion.get(0).getName());
 		assertEquals("Oeste", aExcursion.get(0).getLugar().getName());
 		assertEquals("Excursión a la Fuente de la Gran Hada", aExcursion.get(1).getName());
@@ -71,6 +71,8 @@ class ExcursionTest {
 		assertEquals("Oeste", aExcursion.get(2).getLugar().getName());
 		assertEquals("Excursión al Bar Lácteo", aExcursion.get(3).getName());
 		assertEquals("Este", aExcursion.get(3).getLugar().getName());
+		assertEquals("Excursión al Bar Pepi", aExcursion.get(4).getName());
+		assertEquals("Lavadero", aExcursion.get(4).getLugar().getName());
 		
 		aExcursion = Excursion.Search("Excursión a la Escuela de Esgrima", null);
 		assertEquals(1, aExcursion.size());
