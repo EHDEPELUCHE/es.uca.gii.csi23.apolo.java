@@ -7,6 +7,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import java.awt.event.ActionListener;
@@ -66,7 +67,9 @@ public class FrmMain {
 		mitNuevaExcursion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { try {
 				ShowInternalFrame(new IfrExcursion(), 10, 27, 500, 192);
-			} catch (IOException | SQLException e1) {} }
+			} catch (IOException | SQLException ex) {
+				JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			} }
 		});
 		mnuNuevo.add(mitNuevaExcursion);
 		
@@ -83,7 +86,9 @@ public class FrmMain {
 		mitBuscarExcursion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { try {
 				ShowInternalFrame(new IfrExcursiones(getThis()), 25, 43, 400, 250);
-			} catch (IOException | SQLException e1) {} }
+			} catch (IOException | SQLException ex) {
+				JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			} }
 		});
 		mnuBuscar.add(mitBuscarExcursion);
 		
